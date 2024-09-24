@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Redirect</title>
+    <script>
+        // 사용자 에이전트를 통해 디바이스 종류를 확인하고 리다이렉트하는 함수
+        function redirectToAppropriateLink() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // 안드로이드인 경우
+            if (/android/i.test(userAgent)) {
+                window.location.href = "https://play.google.com/store/apps/details?id=com.giftcardapp.innodapp";
+            }
+            // iOS인 경우
+            else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                window.location.href = "https://apps.apple.com/kr/app/이노디-innod/id6651830061";
+            }
+            // 지원하지 않는 기기의 경우
+            else {
+                document.getElementById("message").innerText = "지원하지 않는 기기입니다.";
+            }
+        }
+
+        // 페이지 로드 시 바로 실행
+        window.onload = redirectToAppropriateLink;
+    </script>
+</head>
+<body>
+    <h1 id="message">리다이렉트 중입니다...</h1>
+</body>
+</html>
+
